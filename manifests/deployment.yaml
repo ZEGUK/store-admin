@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sore-admin
+  labels:
+    app: sore-admin
+    kubernetes.azure.com/generator: devhub
+  namespace: petstore
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sore-admin
+  template:
+    metadata:
+      labels:
+        app: sore-admin
+    spec:
+      containers:
+        - name: sore-admin
+          image: petstoredemo.azurecr.io/image-workflow-1717573574503:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8081
